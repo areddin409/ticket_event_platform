@@ -124,23 +124,6 @@ Authorization: Bearer <your-jwt-token>
 ./mvnw test
 ```
 
-### IntelliJ IDEA Shortcuts
-
-**Navigation:**
-- `Alt + 1` - Project view
-- `Ctrl + N` - Go to class
-- `Ctrl + Shift + N` - Go to file
-
-**Code Generation:**
-- `Alt + 1` then `Alt + Insert` - Create new Java class
-- `Ctrl + Alt + L` - Reformat code
-- `Ctrl + Alt + O` - Optimize imports
-
-**Editing:**
-- `Ctrl + D` - Duplicate line
-- `Alt + J` - Select next occurrence
-- `Shift + F6` - Rename
-
 
 
 
