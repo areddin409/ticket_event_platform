@@ -1,4 +1,4 @@
-package com.areddin.tickets.domain;
+package com.areddin.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
