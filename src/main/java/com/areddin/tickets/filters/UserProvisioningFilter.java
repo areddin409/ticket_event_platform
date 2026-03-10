@@ -1,7 +1,6 @@
 package com.areddin.tickets.filters;
 
-import com.areddin.tickets.domain.entities.User;
-import com.areddin.tickets.repositories.UserRepository;
+import com.areddin.tickets.services.UserProvisioningService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +24,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserProvisioningFilter extends OncePerRequestFilter {
 
-    private final UserRepository userRepository;
+    private final UserProvisioningService userProvisioningService;
 
     /**
      * Provisions a user from JWT token if it doesn't already exist in the database.
@@ -44,18 +43,11 @@ public class UserProvisioningFilter extends OncePerRequestFilter {
             // Extract Keycloak user ID from JWT subject claim
             UUID keycloakId = UUID.fromString(jwt.getSubject());
 
-            // Check if user already exists in the database
-            if (!userRepository.existsById(keycloakId)) {
-
-                // Create new user entity
-                User user = new User();
-                user.setId(keycloakId);
-                user.setName(jwt.getClaimAsString("preferred_username"));
-                user.setEmail(jwt.getClaimAsString("email"));
-
-                // Persist user to database
-                userRepository.save(user);
-            }
+            userProvisioningService.provisionIfAbsent(
+                    keycloakId,
+                    jwt.getClaimAsString("preferred_username"),
+                    jwt.getClaimAsString("email")
+            );
         }
 
         // Continue with the filter chain
