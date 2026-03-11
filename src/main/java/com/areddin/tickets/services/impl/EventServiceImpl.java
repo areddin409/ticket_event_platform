@@ -9,6 +9,8 @@ import com.areddin.tickets.repositories.EventRepository;
 import com.areddin.tickets.repositories.UserRepository;
 import com.areddin.tickets.services.EventService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,7 +55,9 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public List<Event> listEvents() {
-        return eventRepository.findAll();
+    public Page<Event> listEventsForOrganizer(UUID organizerId, Pageable pageable) {
+        return eventRepository.findByOrganizerId(organizerId, pageable);
     }
+
+
 }
