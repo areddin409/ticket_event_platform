@@ -2,6 +2,8 @@ package com.areddin.tickets.mappers;
 
 import com.areddin.tickets.domain.CreateEventRequest;
 import com.areddin.tickets.domain.CreateTicketTypeRequest;
+import com.areddin.tickets.domain.UpdateEventRequest;
+import com.areddin.tickets.domain.UpdateTicketTypeRequest;
 import com.areddin.tickets.domain.dtos.*;
 import com.areddin.tickets.domain.entities.Event;
 import com.areddin.tickets.domain.entities.TicketType;
@@ -24,5 +26,11 @@ public interface EventMapper {
 
     GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event);
 
+    UpdateTicketTypeRequest fromDto(UpdateTicketTypeRequestDto dto);
 
+    UpdateEventRequest fromDto(UpdateEventRequestDto dto);
+
+    UpdateTicketTypeResponseDto toUpdateTicketTypeResponseDto(TicketType ticketType);
+
+    UpdateEventResponseDto toUpdateEventResponseDto(Event event);
 }
