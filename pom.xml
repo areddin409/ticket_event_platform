@@ -30,8 +30,6 @@
 		<java.version>21</java.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <lombok.version>1.18.36</lombok.version>
-        <!-- Override jackson-core to fix GHSA-72hv-8253-57qq and CVE-2026-29062 -->
-        <jackson-bom.version>3.1.0</jackson-bom.version>
 	</properties>
 	<dependencies>
 		<dependency>
