@@ -4,6 +4,7 @@ import com.areddin.tickets.domain.CreateEventRequest;
 import com.areddin.tickets.domain.UpdateEventRequest;
 import com.areddin.tickets.domain.UpdateTicketTypeRequest;
 import com.areddin.tickets.domain.entities.Event;
+import com.areddin.tickets.domain.entities.EventStatusEnum;
 import com.areddin.tickets.domain.entities.TicketType;
 import com.areddin.tickets.domain.entities.User;
 import com.areddin.tickets.exceptions.EventNotFoundException;
@@ -149,6 +150,11 @@ public class EventServiceImpl implements EventService {
     @Transactional
     public void deleteEventForOrganizer(UUID organizerId, UUID eventId) {
         getEventForOrganizer(organizerId, eventId).ifPresent(eventRepository::delete);
+    }
+
+    @Override
+    public Page<Event> listPublishedEvents(Pageable pageable) {
+        return eventRepository.findByStatus(EventStatusEnum.PUBLISHED, pageable);
     }
 
 
